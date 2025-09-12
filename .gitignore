@@ -1,1 +1,3 @@
-hospital/.venv
+hospital/.venv/
+hospital/__pycache__/
+instance/
