@@ -11,16 +11,12 @@ from .models import Hospital
 
 
 
-@app.errorhandler(404)
-def not_found(e):
-    return app.send_static_file("index.html")
 
 @app.route("/temp", methods=["GET"])
 def temp():
     hospital = Hospital(name="Burwood", location="123 street", icu_bed=100, in_transit=90)
     db.session.add(hospital)
     db.session.commit()
-
     return "aaaa"
 
 
@@ -29,15 +25,19 @@ def hospital():
     query = db.select(Hospital)
     hospital = db.session.execute(query).scalars()
 
-    return jsonify(hospital.all())
+    response = jsonify(hospital.all())
+    return response
 
 
-@app.route("/assign", methods=["POST"])
+@app.route("/assign", methods=["GET"])
 def assign():
 
     query = db.select(Hospital.icu_bed, Hospital.in_transit)
     res = db.session.execute(query).one()
 
-    return jsonify(res.all())
+    max_icu_bed = res.icu_bed
+    
+
+    return str(max_icu_bed)
 
     pass
