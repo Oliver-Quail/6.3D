@@ -1,4 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import HospitalInfo from "@/components/hospitalInfo/hospitalInfo";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 
 
@@ -18,10 +19,10 @@ const Operator = () => {
                 <section className="w-1/2">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Hospitals</CardTitle>
+                            <CardTitle className="text-left">Hospitals</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            
+                            <HospitalInfo totalBeds={100} intransit={20} occupied={50} hospitalName="Burwood hospital" distance={24} />
                         </CardContent>
                     </Card>
 

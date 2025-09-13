@@ -1,0 +1,56 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
+
+interface hospitalProps {
+    totalBeds :number;
+    intransit :number;
+    occupied :number;
+    hospitalName :string;
+    distance: number
+}
+
+
+
+const HospitalInfo = (props :hospitalProps) => {
+
+    let avaliable :number = props.totalBeds - props.occupied - props.intransit
+
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle className="text-left">{props.hospitalName} ({props.distance} km)</CardTitle>
+                <CardDescription className="text-left">
+                    <section>
+                        <section className="flex items-center">
+                            <ion-icon name="checkmark-outline"></ion-icon>
+                            <p>{avaliable > 0 ? "Beds are avaliable" : "Beds not are avaliable"}</p>
+                            
+                        </section>
+                    </section>
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <section className="flex justify-between">
+                    <section className="flex items-center">
+                        {/* {In transit} */}
+                        <ion-icon name="bed-outline"></ion-icon>
+                        <p>{avaliable}</p>
+                    </section> 
+                    <section className="flex items-center">
+                        {/* {Total beds} */}
+                        <ion-icon name="medkit-outline"></ion-icon>
+                        <p>{props.totalBeds}</p>
+                    </section>
+                    <section className="flex items-center">
+                        {/* {In transit} */}
+                        <ion-icon name="car-outline"></ion-icon>
+                        <p>{props.intransit}</p>
+                    </section>
+                </section>
+            </CardContent>
+        </Card>
+
+    )
+}
+
+export default HospitalInfo
