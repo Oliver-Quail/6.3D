@@ -8,7 +8,7 @@ const Operator = () => {
 
     return (
         <>
-            <article className="w-1/1 flex flex-row">
+            <article className="w-[100%] flex flex-row">
                 <section className="w-1/2">
                     <Card>
                         <CardHeader>

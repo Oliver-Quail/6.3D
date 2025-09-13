@@ -5,7 +5,7 @@
 enum PAGES {
     LOGIN = "/",
     OPERATOR = "/operator",
-    OFFICAL = "/offical"
+    OFFICIAL = "/official"
 
 }
 
