@@ -9,7 +9,7 @@ from sqlalchemy.orm import defer
 from . import app, db
 from .models import Hospital
 
-@app.route("/temp", methods=["GET"])
+@app.route("/init", methods=["GET"])
 def temp():
     hospital = Hospital(name="Burwood", location="123 street", total_beds=100, in_transit=40, occupied=30)
     db.session.add(hospital)
