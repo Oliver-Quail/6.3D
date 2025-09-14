@@ -9,8 +9,9 @@ class Hospital(db.Model):
     # No unique but we need a primary key for this ORM to work
     name: Mapped[str] = mapped_column(primary_key=True)
     location :Mapped[str]
-    icu_bed :Mapped[int]
+    total_beds :Mapped[int]
     in_transit: Mapped[int]
+    occupied :Mapped[int]
 
 
 
