@@ -1,5 +1,6 @@
 import HospitalInfo from "@/components/hospitalInfo/hospitalInfo";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -20,6 +21,10 @@ const Operator = () => {
                             
                             <Label htmlFor="Notes">Notes on paitent</Label>
                             <Textarea placeholder="Notes" id="Notes" />
+                            <section className="mt-5">
+                                <Button className="w-[50%]" variant="destructive">Cancel</Button>
+                                <Button className="w-[50%]">Confirm</Button>
+                            </section>
                         </CardContent>
                     </Card>
                 </section>

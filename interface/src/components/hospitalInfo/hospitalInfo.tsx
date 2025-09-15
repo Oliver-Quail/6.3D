@@ -1,4 +1,5 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardAction } from "@/components/ui/card";
+import { Button } from "../ui/button";
 
 
 interface hospitalProps {
@@ -28,6 +29,9 @@ const HospitalInfo = (props :hospitalProps) => {
                         </section>
                     </section>
                 </CardDescription>
+                <CardAction>
+                    <Button>Assign</Button>
+                </CardAction>
             </CardHeader>
             <CardContent>
                 <section className="flex justify-between">
