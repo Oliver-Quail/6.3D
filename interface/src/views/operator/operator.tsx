@@ -3,11 +3,32 @@ import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import HOSPITALS from "@/misc/url";
+import getHospitalInfo from "@/services/fetching";
+import hospitalInfoData from "@/types/hospitalInfoData";
+import { useEffect, useState } from "react";
 
 
 
 
 const Operator = () => {
+
+    const [hospitalInfo, setHospitalInfo] = useState<Record<string, hospitalInfoData>>({})
+    const [hospitals, setHospitals] = useState<string[]>([])
+
+    useEffect(() => {
+        if(Object.keys(hospitalInfo).length == 0) {
+            let temp :Record<string, hospitalInfoData> = {}
+            Object.values(HOSPITALS).forEach(element => {
+                if(element != HOSPITALS.BURWOOD) {
+                    getHospitalInfo({hospitalInfo :hospitalInfo, setHospitalInfo :setHospitalInfo, targetHospital: element})
+                }
+            });
+            setHospitals(Object.keys(hospitalInfo))
+        }
+        console.log(hospitalInfo)
+
+    })
 
     return (
         <>
@@ -34,7 +55,13 @@ const Operator = () => {
                             <CardTitle className="text-left">Hospitals</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <HospitalInfo totalBeds={100} intransit={20} occupied={50} hospitalName="Burwood hospital" distance={24} />
+                            {
+                                Object.keys(hospitalInfo).map((key) => {
+                                    return (
+                                        <HospitalInfo totalBeds={hospitalInfo[key].total_beds} intransit={hospitalInfo[key].in_transit} occupied={hospitalInfo[key].occupied} hospitalName={hospitalInfo[key].name} distance={22} />
+                                    )
+                                })
+                            }
                         </CardContent>
                     </Card>
 
