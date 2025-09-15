@@ -34,6 +34,13 @@ const HospitalInfo = (props :hospitalProps) => {
                 </CardAction>
             </CardHeader>
             <CardContent>
+                <section className="text-left">
+                    <h3>Avaliable services</h3>
+                    <ion-icon name="flame-outline"></ion-icon>
+                    <ion-icon name="skull-outline"></ion-icon>
+                    <ion-icon name="water-outline"></ion-icon>
+                </section>
+                <h3 className="text-left mt-5">Beds</h3>
                 <section className="flex justify-between">
                     <section className="flex items-center">
                         {/* {In transit} */}
