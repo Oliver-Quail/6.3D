@@ -2,8 +2,8 @@ import HOSPITALS from "@/misc/url";
 import hospitalInfoData from "@/types/hospitalInfoData";
 
 interface hospitalInfoProps {
-    hospitalInfo: Record<string, hospitalInfoData>;
-    setHospitalInfo: (value: Record<string, hospitalInfoData>) => void;
+    hospitalInfo: hospitalInfoData[];
+    setHospitalInfo: (value: hospitalInfoData[]) => void;
     targetHospital :HOSPITALS;
 }
 
@@ -16,12 +16,10 @@ const getHospitalInfo = (props :hospitalInfoProps) => {
 
 
 
-    let hospitalInfoPromise = fetch(props.targetHospital + "/api/hospital", config).then((hospitalDataRaw :Response) => {
+    let hospitalInfoPromise = fetch("http://127.0.0.1:5001/api/hospital", config).then((hospitalDataRaw :Response) => {
         hospitalDataRaw.json().then((hospitalInfo) => {
-            let hosInfo = hospitalInfo[0] as hospitalInfoData;
-            let copy = props.hospitalInfo;
-            copy[hosInfo.name] = hosInfo
-            props.setHospitalInfo(copy)
+            let hosInfo = hospitalInfo as hospitalInfoData[];
+            props.setHospitalInfo(hosInfo)
 
         }) 
     })

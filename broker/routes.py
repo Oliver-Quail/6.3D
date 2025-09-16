@@ -13,6 +13,8 @@ import requests
 from flask import Response
 
 
+hospitals = ["http://127.0.0.1:5000", "http://127.0.0.1:4000", "http://127.0.0.1:4500"]
+
 
 @app.route("/api/hospital", methods=["GET"])
 def hospital():
@@ -22,15 +24,36 @@ def hospital():
     response = jsonify(hospital.all())
     return response
 
+@app.route("/api/temp", methods=["GET"])
+def temp():
+    hospital = Hospital(name="Royal Melbourne", location="56 Royal street", total_beds=70, in_transit=3, occupied=66)
+    db.session.add(hospital)
+    hospital = Hospital(name="Hawthorn Hospital", location="100 Fenwick street", total_beds=900, in_transit=100, occupied=600)
+    db.session.commit()
+    return "meow"
+
 
 
 @app.route("/api/test", methods=["GET"])
-def test():
+def update_service():
+
+    for url in hospitals:
+        update_hospital_data(url)
+
+
+    return "meow"
+
+
+
+def update_hospital_data(url):
 
     #requests.get("http://127.0.0.1:5000/api/hospital").content
     # Response(requests.get("http://127.0.0.1:5000/api/hospital").content, mimetype="application/json")
+    try:
+        response = requests.get(url).json()
     
-    response = requests.get("http://127.0.0.1:5000/api/hospital").json()
+    except:
+        return "failed"
 
 
     query = db.select(Hospital).filter_by(name=response[0]["name"])

@@ -13,23 +13,14 @@ import { useEffect, useState } from "react";
 
 const Operator = () => {
 
-    const [hospitalInfo, setHospitalInfo] = useState<Record<string, hospitalInfoData>>({})
-    const [hospitals, setHospitals] = useState<string[]>([])
+    const [hospitalInfo, setHospitalInfo] = useState<hospitalInfoData[]>([])
 
     useEffect(() => {
-        if(Object.keys(hospitalInfo).length == 0) {
-            let temp :Record<string, hospitalInfoData> = {}
-            Object.values(HOSPITALS).forEach(element => {
-                if(element == HOSPITALS.BURWOOD) {
-                }
-            });
-            getHospitalInfo({hospitalInfo :hospitalInfo, setHospitalInfo :setHospitalInfo, targetHospital: HOSPITALS.BURWOOD})
-
-            setHospitals(Object.keys(hospitalInfo))
-        }
+        getHospitalInfo({hospitalInfo :hospitalInfo, setHospitalInfo :setHospitalInfo, targetHospital: HOSPITALS.BURWOOD})
+        
         console.log(hospitalInfo)
 
-    })
+    }, [])
 
     return (
         <>
@@ -58,9 +49,9 @@ const Operator = () => {
                         </CardHeader>
                         <CardContent>
                             {
-                                Object.keys(hospitalInfo).map((key) => {
+                                hospitalInfo.map((key) => {
                                     return (
-                                        <HospitalInfo totalBeds={hospitalInfo[key].total_beds} intransit={hospitalInfo[key].in_transit} occupied={hospitalInfo[key].occupied} hospitalName={hospitalInfo[key].name} distance={22} />
+                                        <HospitalInfo totalBeds={key.total_beds} intransit={key.in_transit} occupied={key.occupied} hospitalName={key.name} distance={Math.random()} />
                                     )
                                 })
                             }

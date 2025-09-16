@@ -17,7 +17,7 @@ const HospitalInfo = (props :hospitalProps) => {
     let avaliable :number = props.totalBeds - props.occupied - props.intransit
 
     return (
-        <Card>
+        <Card className="mt-3">
             <CardHeader>
                 <CardTitle className="text-left">{props.hospitalName} ({props.distance} km)</CardTitle>
                 <CardDescription className="text-left">
