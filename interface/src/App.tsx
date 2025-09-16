@@ -6,6 +6,7 @@ import PAGES from './views/pages'
 import Login from './views/login/login'
 import Operator from './views/operator/operator'
 import Offical from './views/official/official'
+import Administrator from './views/administrator/administrator'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path={PAGES.LOGIN} element={<Login />} />
         <Route path={PAGES.OPERATOR} element={<Operator />} />
         <Route path={PAGES.OFFICIAL} element={<Offical />} />
+        <Route path={PAGES.ADMINISTRATOR} element={<Administrator />} />
       </Routes>
     
     </BrowserRouter>
