@@ -4,7 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartConfig, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import HOSPITALS from "@/misc/url";
+import { useEffect, useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import hospitalInfoData from "@/types/hospitalInfoData";
+import getHospitalInfo from "@/services/fetching";
 
 
 
@@ -33,6 +37,18 @@ const chartData = [
 ]
 
 const Offical = () => {
+    const [hospitalInfo, setHospitalInfo] = useState<hospitalInfoData[]>([])
+
+    useEffect(() => {
+
+        if(hospitalInfo.length == 0) {
+            getHospitalInfo({hospitalInfo :hospitalInfo, setHospitalInfo :setHospitalInfo, targetHospital: HOSPITALS.BURWOOD})
+
+        }
+        
+        console.log(hospitalInfo)
+
+    })
 
     return (
         <article className="w-[100%] flex">
@@ -42,7 +58,13 @@ const Offical = () => {
                         <CardTitle className="text-left">Hospitals</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <HospitalInfo totalBeds={100} intransit={20} occupied={50} hospitalName="Burwood hospital" distance={24} />
+                        {
+                            hospitalInfo.map((key) => {
+                                return (
+                                    <HospitalInfo totalBeds={key.total_beds} intransit={key.in_transit} occupied={key.occupied} hospitalName={key.name} distance={Math.round(Math.random()*100)} has_burn_unit={key.has_burn_unit} has_icu={key.has_icu} has_water_unit={key.has_water_unit} />
+                                )
+                            })
+                        }                    
                     </CardContent>
                 </Card>
 

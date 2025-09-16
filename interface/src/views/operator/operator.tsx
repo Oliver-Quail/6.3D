@@ -16,11 +16,15 @@ const Operator = () => {
     const [hospitalInfo, setHospitalInfo] = useState<hospitalInfoData[]>([])
 
     useEffect(() => {
-        getHospitalInfo({hospitalInfo :hospitalInfo, setHospitalInfo :setHospitalInfo, targetHospital: HOSPITALS.BURWOOD})
+
+        if(hospitalInfo.length == 0) {
+            getHospitalInfo({hospitalInfo :hospitalInfo, setHospitalInfo :setHospitalInfo, targetHospital: HOSPITALS.BURWOOD})
+
+        }
         
         console.log(hospitalInfo)
 
-    }, [])
+    })
 
     return (
         <>
@@ -51,7 +55,7 @@ const Operator = () => {
                             {
                                 hospitalInfo.map((key) => {
                                     return (
-                                        <HospitalInfo totalBeds={key.total_beds} intransit={key.in_transit} occupied={key.occupied} hospitalName={key.name} distance={Math.random()} />
+                                        <HospitalInfo totalBeds={key.total_beds} intransit={key.in_transit} occupied={key.occupied} hospitalName={key.name} distance={Math.round(Math.random()*100)} has_burn_unit={key.has_burn_unit} has_icu={key.has_icu} has_water_unit={key.has_water_unit} />
                                     )
                                 })
                             }

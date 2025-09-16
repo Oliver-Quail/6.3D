@@ -12,6 +12,9 @@ class Hospital(db.Model):
     total_beds :Mapped[int]
     in_transit: Mapped[int]
     occupied :Mapped[int]
+    has_burn_unit :Mapped[int]
+    has_icu :Mapped[int]
+    has_water_unit :Mapped[int]
 
 
 

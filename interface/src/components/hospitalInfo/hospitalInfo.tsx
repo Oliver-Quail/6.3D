@@ -8,6 +8,9 @@ interface hospitalProps {
     occupied :number;
     hospitalName :string;
     distance: number
+    has_burn_unit :number
+    has_icu :number
+    has_water_unit :number
 }
 
 
@@ -15,7 +18,7 @@ interface hospitalProps {
 const HospitalInfo = (props :hospitalProps) => {
 
     let avaliable :number = props.totalBeds - props.occupied - props.intransit
-
+    
     return (
         <Card className="mt-3">
             <CardHeader>
@@ -23,8 +26,8 @@ const HospitalInfo = (props :hospitalProps) => {
                 <CardDescription className="text-left">
                     <section>
                         <section className="flex items-center">
-                            <ion-icon name="checkmark-outline"></ion-icon>
-                            <p>{avaliable > 0 ? "Beds are avaliable" : "Beds not are avaliable"}</p>
+                            <ion-icon name={avaliable > 0 ? 'checkmark-outline' : 'close-outline'}></ion-icon>
+                            <p className={avaliable > 0 ? "text-green-500" : "text-red-500"} >{avaliable > 0 ? "Beds are avaliable" : "Beds not are avaliable"}</p>
                             
                         </section>
                     </section>
@@ -36,9 +39,9 @@ const HospitalInfo = (props :hospitalProps) => {
             <CardContent>
                 <section className="text-left">
                     <h3>Avaliable services</h3>
-                    <ion-icon name="flame-outline"></ion-icon>
-                    <ion-icon name="skull-outline"></ion-icon>
-                    <ion-icon name="water-outline"></ion-icon>
+                    <ion-icon name='flame-outline' className={props.has_burn_unit > 0 ? "initial" : 'hidden'}></ion-icon>
+                    <ion-icon name='skull-outline' className={props.has_icu > 0 ? "initial" : 'hidden'}></ion-icon>
+                    <ion-icon name='water-outline' className={props.has_water_unit > 0 ? "initial" : 'hidden'}></ion-icon>
                 </section>
                 <h3 className="text-left mt-5">Beds</h3>
                 <section className="flex justify-between">
