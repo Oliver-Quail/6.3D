@@ -147,6 +147,7 @@ const Offical = () => {
                         </Card>
                     </TabsContent>
                     <TabsContent value="predictions">
+                        <p>This has not been implemented yet. This would be done using a model an an extenral server</p>
 
                     </TabsContent>
                 </Tabs>

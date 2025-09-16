@@ -20,10 +20,11 @@ const Operator = () => {
         if(Object.keys(hospitalInfo).length == 0) {
             let temp :Record<string, hospitalInfoData> = {}
             Object.values(HOSPITALS).forEach(element => {
-                if(element != HOSPITALS.BURWOOD) {
-                    getHospitalInfo({hospitalInfo :hospitalInfo, setHospitalInfo :setHospitalInfo, targetHospital: element})
+                if(element == HOSPITALS.BURWOOD) {
                 }
             });
+            getHospitalInfo({hospitalInfo :hospitalInfo, setHospitalInfo :setHospitalInfo, targetHospital: HOSPITALS.BURWOOD})
+
             setHospitals(Object.keys(hospitalInfo))
         }
         console.log(hospitalInfo)

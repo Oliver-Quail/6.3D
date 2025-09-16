@@ -16,8 +16,11 @@ const Login = () => {
                 <Input type="text" className="text-center w-8/10 mx-auto" placeholder="User Name" />
                 <Input type="password" className="text-center w-8/10 mx-auto" placeholder="Password" />
 
-                <CardFooter>
+                <CardFooter className="flex flex-col">
                     <Button>Login</Button>
+                    <p>Go to /operator for operator screen</p>
+                    <p>Go to /official for offical screen</p>
+                    <p>for all api calls, use /api/[endpoint]</p>
                 </CardFooter>
                 
             </Card>
