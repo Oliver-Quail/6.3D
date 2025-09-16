@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import hospitalInfoData from "@/types/hospitalInfoData";
 import getHospitalInfo from "@/services/fetching";
+import { Input } from "@/components/ui/input";
+import { Select, SelectItem } from "@/components/ui/select";
+import { SelectContent, SelectTrigger, SelectValue } from "@radix-ui/react-select";
 
 
 
@@ -82,6 +85,26 @@ const Offical = () => {
                                 <CardTitle className="text-left">Transfers</CardTitle>
                             </CardHeader>
                             <CardContent>
+                            <section className="flex">
+                                <section className="w-[50%]">
+                                    <Select>
+                                        <SelectTrigger className="w-[180px] text-left">
+                                            <SelectValue placeholder="Select a hospital" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                        {
+                                            hospitalInfo.map((hospital) => {
+                                                return (
+                                                    <SelectItem value={hospital.name}>{hospital.name}</SelectItem>
+                                                )
+                                            })
+                                        }
+                                        </SelectContent>
+                                    </Select>
+                                </section>
+                                <Input className="w-[50%]" type="amount" placeholder="Number of paitents to transfer" />
+                            </section>
+                            <Button className="w-[100%] my-3">Confirm</Button>
                                 <TransferButton />
                                 
                             </CardContent>
