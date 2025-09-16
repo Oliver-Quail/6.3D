@@ -66,7 +66,7 @@ def update_hospital_data(url):
 
     if res.first() is None:
         print("Running") 
-        hospital = Hospital(name=response[0]["name"], location=response[0]["location"], total_beds=response[0]["total_beds"], in_transit=response[0]["in_transit"], occupied=response[0]["occupied"])
+        hospital = Hospital(name=response[0]["name"], location=response[0]["location"], total_beds=response[0]["total_beds"], in_transit=response[0]["in_transit"], occupied=response[0]["occupied"], has_burn_unit=response[0]["has_burn_unit"], has_icu=response[0]["has_icu"], has_water_unit=response[0]["has_water_unit"])
         db.session.add(hospital)
         db.session.commit()
     else:
